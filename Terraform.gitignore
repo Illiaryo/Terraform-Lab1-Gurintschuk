@@ -1,0 +1,13 @@
+resource "google_compute_network" "not-example" {
+  name = "not example"
+  project = "GCP Lab"
+  auto_create_subnetworks = false
+  mtu = 1460
+  routing_mode = "regional"
+ }
+resource "google_compute_subnetwork" "some-subnet" {
+  name          = "some-subnet"
+  ip_cidr_range = "10.0.1.0/24"
+  region        = "europe_west1"
+  network       = google_compute_network.not-example.id
+ }
